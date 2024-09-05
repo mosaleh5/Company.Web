@@ -1,8 +1,24 @@
 ﻿
 @model IEnumerable<Department>;
+<style>
+    th, td {
+        padding: 10px; /* Adds padding inside the cells */
+        margin: 5px; /* Adds margin around the cells */
+        text-align: left; /* Aligns text to the left */
+    }
 
+    table {
+        border-collapse: collapse; /* Ensures margins don't cause extra space */
+        width: 100%; /* Makes table width 100% of the container */
+    }
+
+    th {
+        background-color: #f2f2f2; /* Adds a background color to the headers */
+    }
+</style>
+<a asp-controller="Department" asp-action="Create" class="btn btn-primary">Create New Department</a>
 @if(Model.Count() > 0)
-{
+{<table>
     <thead>
         <tr>
             <th>@Html.DisplayNameFor(D => D.code)</th>
@@ -22,23 +38,24 @@
                 <td>@department.Name</td>
                 <td>@department.CreateAt</td>
                 <td>
-                    <a asp-action="Details" asp-route-id ="department.Id" class="btn btn-warning">
+                    <a asp-action="Details" asp-route-id ="@department.Id" class="btn btn-warning">
                         <i class="fas fa-eye"></i> Details
                     </a>
                 </td>  
                 <td>
-                    <a asp-action="Update" asp-route-id ="department.Id" class="btn btn-warning">
+                    <a asp-action="Update" asp-route-id ="@department.Id" class="btn btn-primary">
                         <i class="fas fa-Edit"></i> Update
                     </a>
                 </td> 
                 <td>
-                    <a asp-action="Delete" asp-route-id ="department.Id" class="btn btn-danger">
-                        <i class="fas fa-Trash"></i> Details
+                    <a asp-action="Delete" asp-route-id ="@department.Id" class="btn btn-danger">
+                        <i class="fas fa-Trash"></i> Delete
                     </a>
                 </td>
             </tr>
         }
     </tbody>
+ </table>
 }
 else
 {

@@ -1,6 +1,8 @@
 using Company.Data.Contexts;
 using Company.Repository.Interfaces;
 using Company.Repository.Repositories;
+using Company.Service.Interfaces;
+using Company.Service.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace Company.Web
@@ -20,7 +22,10 @@ namespace Company.Web
 
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
-            builder.Services.AddTransient<IDepartmentRepository, DepartmentRepository>(); 
+           //builder.Services.AddTransient<IDepartmentRepository, DepartmentRepository>(); 
+            builder.Services.AddTransient<IDepartmentService, DeprtmentService>(); 
+            builder.Services.AddTransient<IUnitOfWork, UnitOfWork>(); 
+             
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

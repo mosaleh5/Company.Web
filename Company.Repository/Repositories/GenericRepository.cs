@@ -1,12 +1,7 @@
 ﻿using Company.Data.Contexts;
 using Company.Data.Entities;
 using Company.Repository.Interfaces;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Company.Repository.Repositoriest
 {
@@ -18,26 +13,23 @@ namespace Company.Repository.Repositoriest
             companyDbContext = _companyDbContext;
         }
         public void Add(T Entity)
-        {
-            companyDbContext.Set<T>().Add(Entity);
-        }
+                =>companyDbContext.Set<T>().Add(Entity);
+        
 
         public void Delete(T Entity)
-        {
-            companyDbContext.Set<T>().Remove(Entity);
-
-        }
+           => companyDbContext.Set<T>().Remove(Entity);
+        
 
         public IEnumerable<T> GetAll()
-        {
-            return companyDbContext.Set<T>().ToList();
-        }
+           =>  companyDbContext.Set<T>().ToList();
+        
 
         public T GetById(int id)
-        {
-            return companyDbContext.Set<T>().FirstOrDefault(x => x.Id == id);
-        }
+           => companyDbContext.Set<T>().FirstOrDefault(x => x.Id == id);
+        
         public void Update(T Entity)
-        => companyDbContext.Update(Entity);
+            =>companyDbContext.Update(Entity);
+        
+        
     }
 }
